@@ -16,12 +16,14 @@
  * limitations under the License.
  */
 
+use Limoncello\Contracts\Provider\ProvidesCommandsInterface;
 use Limoncello\Contracts\Provider\ProvidesContainerConfiguratorsInterface;
+use Limoncello\Templates\Commands\TemplatesCommand;
 
 /**
  * @package Limoncello\Templates
  */
-class TemplatesProvider implements ProvidesContainerConfiguratorsInterface
+class TemplatesProvider implements ProvidesContainerConfiguratorsInterface, ProvidesCommandsInterface
 {
     /**
      * @inheritdoc
@@ -30,6 +32,16 @@ class TemplatesProvider implements ProvidesContainerConfiguratorsInterface
     {
         return [
             TemplatesContainerConfigurator::HANDLER,
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function getCommands(): array
+    {
+        return [
+            TemplatesCommand::class,
         ];
     }
 }
